@@ -15,6 +15,7 @@
 # vendor/
 
 bin/
-out/
 .idea/
 .vscode/
+# Added by goreleaser init:
+dist/
