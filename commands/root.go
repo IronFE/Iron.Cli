@@ -8,10 +8,12 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// the version is set via ldflags
+var version = "snapshot"
+
 var rootCmd = &cobra.Command{
 	Use:   "iron",
 	Short: "IronCLI helps you manage your stuff",
-	Long:  "",
 	Run: func(cmd *cobra.Command, _ []string) {
 		cmd.Help()
 	},
@@ -29,6 +31,8 @@ func ExecuteRootCommand() {
 
 	rootCmd.CompletionOptions.DisableDefaultCmd = true
 	rootCmd.SilenceUsage = true
+	rootCmd.Version = version
+	rootCmd.SetVersionTemplate("{{println .Version}}")
 
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Fprintln(os.Stderr, err)
